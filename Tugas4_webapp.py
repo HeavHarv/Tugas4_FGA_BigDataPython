@@ -44,6 +44,7 @@ def login():
 
       if hasil:
         session['name'] = v_login[3]
+        session['mail'] = request.form['mail']
         return redirect(url_for("bigdataApps"))
         # return redirect('/bigdataApps')
         # return render_template("bigdataApps.html")
@@ -280,10 +281,11 @@ def connect_db():
 
 
 
-@app.route('/logout')
+@app.route('/signout')
 def logout():
    # remove the name from the session if it is there
    session.pop('name', None)
+   session.pop('mail', None)
    return redirect(url_for('index'))
 
 if __name__ == '__main__':
